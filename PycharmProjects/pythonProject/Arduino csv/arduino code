@@ -1,0 +1,33 @@
+//gloabls
+// nome das colunas, adicionar mais se necessario(tentar automatizar esse processo)
+
+String dataLabel1 = " ";
+String dataLabel2 = " ";
+bool label = true;
+
+void loop(){
+
+    //print out column headers
+    while(label){ //runs once
+        Serial.print(dataLabel1);
+        Serial.print(",");
+        Serial.println(dataLabel2);
+        label=false;
+  }
+
+    data1 = analogRead(sensor1);
+    data2 = analogRead(sensor2);
+
+    if((curr1 >=data1+threshold || curr1 <=data1-threshold) || (curr2>=data2+threshold || curr2<=data2-threshold) ){
+
+	//Display Data to Serial Monitor
+	Serial.print(data1);
+	Serial.print(",");
+	Serial.println(data2);
+
+	//set the current equal to the data
+	curr1 = data1;
+	curr2 = data2;
+    }
+    delay(freq);
+}
